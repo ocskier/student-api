@@ -14,7 +14,7 @@ const init = async () => {
     const { data: grades } = await axios.post(
       'https://bootcampspot.com/api/instructor/v1/grades',
       JSON.stringify({
-        courseId: process.env.COURSE_ID,
+        courseId: Number(process.env.COURSE_ID),
       }),
       {
         headers: {
