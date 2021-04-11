@@ -11,7 +11,7 @@ const init = async () => {
         password: process.env.PASSWD,
       })
     );
-    const gradeRes = await axios.post(
+    const { data: grades } = await axios.post(
       'https://bootcampspot.com/api/instructor/v1/grades',
       JSON.stringify({
         courseId: 2794,
@@ -23,7 +23,6 @@ const init = async () => {
         },
       }
     );
-    const grades = gradeRes.data;
     let filteredGrades = grades
       .filter(
         (grade, i) =>
@@ -54,22 +53,20 @@ const init = async () => {
       const assignmentNumB = parseInt(b.assignmentTitle.split(':')[0]);
       return assignmentNumA - assignmentNumB;
     });
-    let filteredAssns = [];
-    filteredGrades
-      .map((grade) => {
-        filteredAssns.indexOf(grade.assignmentTitle) === -1
-          ? filteredAssns.push(grade.assignmentTitle)
-          : null;
-      })
-      .filter((assn) => assn);
-    let filteredNames = [];
-    filteredGrades
-      .map((grade) => {
-        filteredNames.indexOf(grade.studentName) === -1
-          ? filteredNames.push(grade.studentName)
-          : null;
-      })
-      .filter((assn) => assn);
+    let filteredAssns = filteredGrades.reduce(
+      (acc, grade) =>
+        acc.indexOf(grade.assignmentTitle) === -1
+          ? [...acc, grade.assignmentTitle]
+          : [...acc],
+      []
+    );
+    let filteredNames = filteredGrades.reduce(
+      (acc, grade) =>
+        acc.indexOf(grade.studentName) === -1
+          ? [...acc, grade.studentName]
+          : [...acc],
+      []
+    );
     let flippedTable = [];
     for (let i = 0; i < 33; i++) {
       flippedTable.push({
