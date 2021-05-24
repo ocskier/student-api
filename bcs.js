@@ -1,6 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 const { printTable } = require('console-table-printer');
+const numStudents = 47;
 
 const init = async () => {
   try {
@@ -68,7 +69,7 @@ const init = async () => {
       []
     );
     let flippedTable = [];
-    for (let i = 0; i < 33; i++) {
+    for (let i = 0; i < numStudents; i++) {
       flippedTable.push({
         Name: filteredNames[i],
         ...Object.fromEntries([
@@ -77,9 +78,9 @@ const init = async () => {
               .map((assn, j) => {
                 return [
                   String(j),
-                  filteredGrades[i + j * 33].grade === 'Incomplete'
+                  filteredGrades[i + j * numStudents].grade === 'Incomplete'
                     ? 'I'
-                    : filteredGrades[i + j * 33].grade,
+                    : filteredGrades[i + j * numStudents].grade,
                 ];
               })
               .slice(1)
