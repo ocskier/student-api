@@ -107,3 +107,5 @@ function myFunction() {
 }
 
 ```
+
+![grades-script](https://user-images.githubusercontent.com/36890724/132952480-4dd64f88-65f5-4b43-a944-edaa2eae42b3.PNG)
