@@ -14,7 +14,7 @@ function myFunction() {
           'Content-Type': 'application/json',
         },
         payload: JSON.stringify({
-          email: "youremail@instructors.2u.com",
+          email: "yourbcsemail@something.com",
           password: "yourbcspassword",
         })}
       );
