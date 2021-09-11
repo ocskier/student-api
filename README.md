@@ -106,4 +106,4 @@ function myFunction() {
   init();
 }
 
-```javascript
+```
